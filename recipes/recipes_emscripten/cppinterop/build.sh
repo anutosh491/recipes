@@ -1,6 +1,7 @@
 mkdir build
 cd build
 
+echo $LDFLAGS
 export CMAKE_PREFIX_PATH=$PREFIX
 export CMAKE_SYSTEM_PREFIX_PATH=$PREFIX
 
