@@ -13,11 +13,12 @@ emcmake cmake -DCMAKE_BUILD_TYPE=Release               \
     -DClang_DIR=$PREFIX                                 \
     -DBUILD_SHARED_LIBS=ON                             \
     -DCMAKE_INSTALL_PREFIX=$PREFIX                      \
+    -DCMAKE_VERBOSE_MAKEFILE=ON                         \
     -DCMAKE_FIND_ROOT_PATH_MODE_PACKAGE=ON              \
     ../
 
 # Build step
-emmake make -j1
+EMCC_DEBUG=1 emmake make -j1
 
 # Install step
 emmake make install
