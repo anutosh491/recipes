@@ -3,7 +3,8 @@
 set -ex
 
 emmake make libs netlib \
-    NO_SHARED=1 \
+    NO_SHARED=0 \
+    NO_STATIC=1 \
     TARGET=RISCV64_GENERIC \
     CC=$CC \
     FC=$FC \
@@ -14,7 +15,7 @@ emmake make libs netlib \
     NO_LAPACKE=0 \
     USE_OPENMP=0
 
-emmake make install PREFIX=$PREFIX NO_SHARED=1
+emmake make install PREFIX=$PREFIX NO_SHARED=0 NO_STATIC=1
 
 mkdir -p $PREFIX/lib
-cp libopenblas.a $PREFIX/lib
+cp libopenblas.so $PREFIX/lib
