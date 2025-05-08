@@ -18,4 +18,4 @@ emmake make libs netlib \
 emmake make install PREFIX=$PREFIX NO_SHARED=0 NO_STATIC=1
 
 mkdir -p $PREFIX/lib
-cp libopenblas.SO $PREFIX/lib
+cp libopenblas.so $PREFIX/lib
