@@ -11,7 +11,7 @@ emmake make libs netlib \
     USE_THREAD=0 \
     BINARY=64 \
     NO_LAPACK=0 \
-    NO_LAPACKE=0 \
+    NO_LAPACKE=1 \
     USE_OPENMP=0
 
 emmake make install PREFIX=$PREFIX NO_SHARED=1
