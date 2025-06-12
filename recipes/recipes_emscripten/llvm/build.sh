@@ -10,7 +10,7 @@ export CMAKE_SYSTEM_PREFIX_PATH=$PREFIX
 # export LDFLAGS=""
 
 # Configure step
-emcmake cmake ${CMAKE_ARGS} -S ../llvm -B .         \
+emcmake cmake -S ../llvm -B .         \
     -DCMAKE_BUILD_TYPE=Release                      \
     -DCMAKE_PREFIX_PATH=$PREFIX                     \
     -DCMAKE_INSTALL_PREFIX=$PREFIX                  \
