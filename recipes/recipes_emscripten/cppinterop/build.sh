@@ -26,7 +26,7 @@ emcmake cmake -DCMAKE_BUILD_TYPE=Release               \
     ../
 
 # Build step
-emmake make -j1
+emmake make -j8
 
 # Install step
 emmake make install
