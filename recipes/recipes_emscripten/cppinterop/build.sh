@@ -4,6 +4,16 @@ cd build
 export CMAKE_PREFIX_PATH=$PREFIX
 export CMAKE_SYSTEM_PREFIX_PATH=$PREFIX
 
+# unset EM_FORGE_OPTFLAGS
+# unset EM_FORGE_DBGFLAGS
+# unset EM_FORGE_LDFLAGS_BASE
+# unset EM_FORGE_CFLAGS_BASE
+# unset EM_FORGE_SIDE_MODULE_LDFLAGS
+# unset EM_FORGE_SIDE_MODULE_CFLAGS
+
+# unset CFLAGS
+# unset LDFLAGS
+
 # Configure step
 emcmake cmake -DCMAKE_BUILD_TYPE=Release               \
     -DCMAKE_PREFIX_PATH=$PREFIX                        \
@@ -16,7 +26,10 @@ emcmake cmake -DCMAKE_BUILD_TYPE=Release               \
     ../
 
 # Build step
-emmake make -j1
+emmake make -j8
 
 # Install step
 emmake make install
+
+echo "Installed file size:"
+ls -lh $PREFIX/lib/libclangCppInterOp.so
