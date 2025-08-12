@@ -27,7 +27,7 @@ emcmake cmake -S ../llvm -B .         \
     -DLLVM_INCLUDE_EXAMPLES=OFF                     \
     -DLLVM_INCLUDE_TESTS=OFF                        \
     -DLLVM_ENABLE_LIBEDIT=OFF                       \
-    -DLLVM_ENABLE_PROJECTS="clang;lld"              \
+    -DLLVM_ENABLE_PROJECTS="clang;lld;lldb"         \
     -DLLVM_ENABLE_THREADS=OFF                       \
     -DLLVM_ENABLE_ZSTD=OFF                          \
     -DLLVM_ENABLE_LIBXML2=OFF                       \
@@ -36,7 +36,11 @@ emcmake cmake -S ../llvm -B .         \
     -DCLANG_ENABLE_ARCMT=OFF                        \
     -DCLANG_ENABLE_BOOTSTRAP=OFF                    \
     -DCLANG_BUILD_TOOLS=OFF                         \
-    -DCMAKE_CXX_FLAGS="-Dwait4=__syscall_wait4" \
+    -DCMAKE_CXX_FLAGS="-Dwait4=__syscall_wait4"     \
+    -DLLDB_ENABLE_PYTHON=OFF                        \
+    -DLLDB_ENABLE_LIBEDIT=OFF                       \
+    -DLLDB_ENABLE_CURSES=OFF                        \
+    -DLLDB_BUILD_FRAMEWORK=OFF                      \
     -DLLVM_NATIVE_TOOL_DIR=$BUILD_PREFIX/bin/
 
 # Build and Install step
