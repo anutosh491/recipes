@@ -36,7 +36,7 @@ emcmake cmake -S ../llvm -B .         \
     -DCLANG_ENABLE_ARCMT=OFF                        \
     -DCLANG_ENABLE_BOOTSTRAP=OFF                    \
     -DCLANG_BUILD_TOOLS=OFF                         \
-    -DCMAKE_CXX_FLAGS="-Dwait4=__syscall_wait4"     \
+    -DCMAKE_CXX_FLAGS="-Dwait4=__syscall_wait4 -isystem $EMSCRIPTEN_FORGE_EMSDK_DIR/upstream/emscripten/cache/sysroot/include/c++/v1"     \
     -DLLDB_ENABLE_PYTHON=OFF                        \
     -DLLDB_ENABLE_LIBEDIT=OFF                       \
     -DLLDB_ENABLE_CURSES=OFF                        \
