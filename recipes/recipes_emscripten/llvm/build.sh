@@ -41,6 +41,7 @@ emcmake cmake -S ../llvm -B .         \
     -DLLDB_ENABLE_LIBEDIT=OFF                       \
     -DLLDB_ENABLE_CURSES=OFF                        \
     -DLLDB_BUILD_FRAMEWORK=OFF                      \
+    -DLLDB_BUILD_TOOLS=OFF                          \
     -DLLVM_NATIVE_TOOL_DIR=$BUILD_PREFIX/bin/
 
 # Build and Install step
