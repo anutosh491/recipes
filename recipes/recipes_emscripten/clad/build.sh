@@ -2,6 +2,38 @@
 
 set -euxo pipefail
 
+# Clad's standalone CMake finds LLVM and then Clang.
+# In emscripten-forge, ClangConfig.cmake references LLD imported targets
+# such as lldWasm and lldCommon, so load LLD before Clang.
+python - <<'PY'
+import os
+from pathlib import Path
+
+p = Path(os.environ["SRC_DIR"]) / "CMakeLists.txt"
+txt = p.read_text()
+
+needle = "  ## Find supported Clang"
+insert = r'''
+  ## Find LLD before Clang because this LLVM/Clang package exports
+  ## Clang targets that reference lldWasm and lldCommon.
+  if (DEFINED LLD_DIR)
+    find_package(LLD REQUIRED CONFIG
+      PATHS ${LLD_DIR} "${LLD_DIR}/lib/cmake/lld" "${LLD_DIR}/cmake"
+      NO_DEFAULT_PATH)
+  else()
+    find_package(LLD REQUIRED CONFIG)
+  endif()
+
+'''
+
+if insert not in txt:
+    if needle not in txt:
+        raise RuntimeError("Could not find insertion point for LLD find_package patch")
+    txt = txt.replace(needle, insert + needle)
+
+p.write_text(txt)
+PY
+
 mkdir build
 cd build
 
@@ -27,6 +59,7 @@ emcmake cmake \
     -DCMAKE_INSTALL_PREFIX="$PREFIX" \
     -DCMAKE_CXX_STANDARD=17 \
     -DLLVM_DIR="$PREFIX/lib/cmake/llvm" \
+    -DLLD_DIR="$PREFIX/lib/cmake/lld" \
     -DClang_DIR="$PREFIX/lib/cmake/clang" \
     -DLLVM_EXTERNAL_LIT="$(which lit || true)" \
     -DBUILD_SHARED_LIBS=ON \
