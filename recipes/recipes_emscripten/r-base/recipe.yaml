@@ -127,3 +127,19 @@ about:
 extra:
   recipe-maintainers:
   - IsabelParedes
+
+outputs:
+  - package:
+      name: r-base-py
+      version: ${{ version }}
+    build:
+      number: ${{ build_number }}
+      skip: ${{ r_base_static_libpython != "1" }}
+    requirements:
+      run:
+      - r-base ==${{ version }} static_libpython_*
+    about:
+      summary: Metapackage selecting the libpython-linked variant of r-base (for r-reticulate)
+    extra:
+      recipe-maintainers:
+      - IsabelParedes
