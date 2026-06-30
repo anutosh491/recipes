@@ -30,7 +30,7 @@ requirements:
   - r-rlang
   - r-withr
   host:
-  - r-base-py
+  - r-base ==${{ r_base }} static_libpython_*
   - r-matrix
   - r-rcpp >=1.0.7
   - r-rcpptoml
