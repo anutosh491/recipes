@@ -140,6 +140,3 @@ outputs:
       - r-base ==${{ version }} static_libpython_*
     about:
       summary: Metapackage selecting the libpython-linked variant of r-base (for r-reticulate)
-    extra:
-      recipe-maintainers:
-      - IsabelParedes
