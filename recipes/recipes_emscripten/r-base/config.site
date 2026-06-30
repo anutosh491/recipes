@@ -169,7 +169,9 @@ FCLIBS="-lflang_rt.runtime"
 ## configure, and anything set here will be in addition unless MAIN_LD
 ## is given.
 ## For example, one can set flags for profiling here.
-## NOTE: These apply to R.bin
+## NOTE: These apply to R.bin only (not libR.so). The static-libpython
+## variant appends libpython and its transitive link dependencies here in
+## build.sh (-lbz2 -lz -lsqlite3 -lffi -lzstd -lssl -lcrypto -llzma -lpython*).
 MAIN_LDFLAGS="-sMAIN_MODULE=1 \
 -sSTACK_SIZE=5MB \
 -sALLOW_MEMORY_GROWTH=1 \
